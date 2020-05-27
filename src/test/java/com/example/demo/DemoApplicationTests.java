@@ -1,7 +1,7 @@
 package com.example.demo;
 
-import com.example.demo.chapter6.Member;
-import com.example.demo.chapter6.Team;
+import com.example.demo.chapter6.oto.Member;
+import com.example.demo.chapter6.oto.Team;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -37,4 +37,23 @@ public class DemoApplicationTests {
         emf.close();
     }
 
+    @Test
+    public void 일대다_양방향(){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
+        EntityManager entityManager =  emf.createEntityManager();
+        EntityTransaction tx = entityManager.getTransaction();
+        tx.begin();
+        com.example.demo.chapter6.otn.Member member = new com.example.demo.chapter6.otn.Member("member1");
+
+        com.example.demo.chapter6.otn.Team team = new com.example.demo.chapter6.otn.Team("team1");
+
+        member.setTeam(team);
+        team.addMember(member);
+        entityManager.persist(team);
+        entityManager.persist(member);
+
+        tx.commit();
+        entityManager.close();
+        emf.close();
+    }
 }

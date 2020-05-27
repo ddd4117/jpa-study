@@ -1,9 +1,10 @@
-package com.example.demo.chapter6;//package chap6.entity;
-
-import javax.persistence.*;
+package com.example.demo.chapter6.otn;//package chap6.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.ArrayList;
 
 
 @Entity
@@ -15,7 +16,7 @@ public class Member {
     private Long id;
     private String name;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
@@ -25,8 +26,6 @@ public class Member {
 
     public void setTeam(Team team) {
         this.team = team;
-        if(team.getMember() != this) {
-            team.setMember(this);
-        }
+        team.getMembers().add(this);
     }
 }

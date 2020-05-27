@@ -1,8 +1,7 @@
-package com.example.demo.chapter6;//package chap6.entity;
+package com.example.demo.chapter6.oto;//package chap6.entity;
 
 import javax.persistence.*;
 
-import com.example.demo.chapter6.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
