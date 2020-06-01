@@ -1,6 +1,7 @@
 package com.example.demo.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class Delivery {
     @Id @GeneratedValue
     @Column(name = "DELIVERY_ID")
@@ -19,6 +21,11 @@ public class Delivery {
     @Embedded
     private Address address;
 
-//    @Enumerated(EnumType.STRING)
-//    private DeliveryStatus status;
+    @Enumerated(EnumType.STRING)
+    private DeliveryStatus status;
+
+    public Delivery(Address address) {
+        this.address = address;
+        this.status = DeliveryStatus.READY;
+    }
 }
