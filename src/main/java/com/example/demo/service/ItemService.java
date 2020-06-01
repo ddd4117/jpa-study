@@ -25,4 +25,9 @@ public class ItemService{
     public Item findOne(Long itemId){
         return itemRepository.findOne(itemId);
     }
+
+    public void update(Item item){
+        Item findItem = itemRepository.findOne(item.getId());
+        findItem.setPrice(item.getPrice());
+    }
 }
